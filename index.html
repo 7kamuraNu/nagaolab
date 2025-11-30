@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>長尾研究室 | Nagao Laboratory</title>
+  <style>
+    :root {
+      --main-color: #005b96;
+      --accent-color: #ffcc00;
+      --bg-color: #f7f9fc;
+      --text-color: #333;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--main-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffffee;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e3e7ee;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--main-color);
+    }
+
+    .brand-sub {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      padding: 0.4rem 0.6rem;
+      border-radius: 999px;
+    }
+
+    nav a:hover {
+      background-color: #f0f4fb;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #004b7a, #0077c8);
+      color: white;
+      padding: 3.5rem 1rem 3rem;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .hero .hero-lead {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-highlight {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-meta {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: #333;
+      font-weight: 600;
+      border-color: var(--accent-color);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: #fff;
+      border-color: #ffffff80;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(0.95);
+    }
+
+    .btn-outline:hover {
+      background-color: #ffffff22;
+    }
+
+    .hero-card {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      padding: 1.2rem 1.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.85rem;
+    }
+
+    .hero-card h2 {
+      font-size: 1rem;
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-list {
+      padding-left: 1.1rem;
+      margin: 0 0 0.8rem;
+    }
+
+    .hero-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-card-footer {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 3rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    h2.section-title {
+      font-size: 1.4rem;
+      border-left: 4px solid var(--main-color);
+      padding-left: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 0.75rem;
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e3e7ee;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      margin: 0.2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background-color: #eef3ff;
+      color: #445;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .research-item h3 {
+      font-size: 1rem;
+      margin: 0 0 0.3rem;
+    }
+
+    .research-item span.small-label {
+      font-size: 0.75rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .research-item p {
+      font-size: 0.9rem;
+      margin: 0.2rem 0 0.3rem;
+    }
+
+    /* 研究画像用 */
+    .research-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #dde5f2;
+      border-radius: 0.5rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #555;
+      border: 1px dashed #bcc6da;
+      overflow: hidden;
+      text-align: center;
+      /* padding: 0.4rem; */
+    }
+
+    .research-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: inherit;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .member-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .member-list li {
+      padding: 0.3rem 0;
+      border-bottom: 1px dashed #e0e3ec;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .member-role {
+      font-size: 0.8rem;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .publication-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .publication-list li {
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px dashed #e0e3ec;
+    }
+
+    .publication-year {
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 1.8rem;
+      align-items: stretch; /* ← これを追加 */
+    }
+
+    .access-map-placeholder {
+      background: #dde5f2;
+      border-radius: 0.75rem;
+      height: 248.67px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #555;
+      border: 1px dashed #bcc6da;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .access-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .access-table th,
+    .access-table td {
+      border-bottom: 1px solid #e0e3ec;
+      padding: 0.35rem 0.2rem;
+      text-align: left;
+    }
+
+    .access-table th {
+      white-space: nowrap;
+      font-weight: 600;
+      padding-right: 0.8rem;
+      vertical-align: top;
+    }
+
+    footer {
+      border-top: 1px solid #e3e7ee;
+      padding: 1rem 1rem 1.5rem;
+      font-size: 0.8rem;
+      color: #777;
+      background: #fff;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .two-column,
+      .members-grid,
+      .access-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      nav ul {
+        gap: 0.4rem;
+        font-size: 0.8rem;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-title">長尾研究室</div>
+        <div class="brand-sub">
+          名古屋大学 大学院環境学研究科 都市環境学専攻 環境機能物質学
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">概要</a></li>
+          <li><a href="#research">研究内容</a></li>
+          <li><a href="#members">メンバー</a></li>
+          <li><a href="#publications">業績</a></li>
+          <li><a href="#access">アクセス</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-highlight">
+          都市資源 × LiDAR × データサイエンス × 環境・エネルギーシステム
+        </div>
+        <h1>長尾研究室へようこそ</h1>
+        <p class="hero-lead">
+          長尾研究室では、<strong>都市に埋もれた「資源」と「情報」を可視化し、環境負荷の小さい社会・エネルギーシステムをデザインすること</strong>を目指しています。
+        </p>
+        <p class="hero-meta">
+          車載・航空レーザ計測（LiDAR）や3D都市モデル、アンケート・行動データなどを統合し、<br />
+          未利用バイオマスや物質ストックの把握、行動変容の分析、エネルギー・環境システムの最適化に取り組んでいます。
+        </p>
+        <div class="hero-buttons">
+          <a href="#research" class="btn-primary">研究テーマを見る</a>
+          <a href="#members" class="btn-outline">メンバー一覧</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h2>NEWS &amp; 更新情報</h2>
+        <ul class="hero-list">
+          <li>2025年12月　HPを刷新しました。</li>
+          <li>2025年04月　当研究室にB4の学生が2名配属されました。</li>
+          <li>2024年04月　当研究室にB4の学生が1名配属されました。</li>
+          <li>2024年04月　当研究室にM1の学生が1名配属されました。</li>
+        </ul>
+        <div class="hero-card-footer">
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-title">研究室概要</h2>
+      <div class="two-column">
+        <div class="card">
+          <h3>指導教員</h3>
+          <p><strong>長尾 征洋（Nagao Masahiro）准教授</strong></p>
+          <p style="font-size:0.9rem;">
+            名古屋大学 大学院環境学研究科 都市環境学専攻 環境機能物質学／情報学部 自然情報学科を担当。<br />
+            燃料電池・バッテリー、バイオマス利用、機械学習、最適化計算などをキーワードに、環境負荷の小さいエネルギー・社会システムの設計に取り組んでいます。
+          </p>
+          <p style="font-size:0.8rem; color:#666;">
+            詳細なプロフィールは<a href="https://profs.provost.nagoya-u.ac.jp/html/100003286_ja.html">名古屋大学研究者総覧（長尾征洋）</a>をご覧ください。
+          </p>
+        </div>
+        <div class="card">
+          <h3>研究のキーワード</h3>
+          <p>
+            当研究室では、以下のようなキーワードを軸に研究を行っています。
+          </p>
+          <div class="tag-list">
+            <span class="tag">LiDAR計測</span>
+            <span class="tag">3D都市モデル</span>
+            <span class="tag">未利用資源</span>
+            <span class="tag">物質ストック</span>
+            <span class="tag">データサイエンス</span>
+            <span class="tag">統計モデリング</span>
+            <span class="tag">機械学習</span>
+            <span class="tag">最適化計算</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research">
+      <h2 class="section-title">研究内容</h2>
+      <div class="research-grid">
+        <article class="card research-item">
+        <span class="small-label">PROJECT 01</span>
+        <h3>都市点群データによる資源量の定量化</h3>
+        <div class="research-image">
+            <img src="./img01.png">
+        </div>
+        <p>
+            車載LiDARや航空レーザなどから得られた都市点群データを用い、
+            樹木・建物・インフラなど都市に存在する多様な資源ストックを3Dで定量化します。
+        </p>
+        <p>
+            AIやアルゴリズムなどの手法を組み合わせ、
+            都市に眠る資源の可視化とポテンシャル評価を行っています。
+        </p>
+        </article>
+
+        <article class="card research-item">
+        <span class="small-label">PROJECT 02</span>
+        <h3>都市3Dデータによる可視化・シミュレーション</h3>
+        <div class="research-image">
+           <img src="./img02.png">
+        </div>
+        <p>
+            PLATEAUの3D都市モデルや点群データを用いて、都市空間をデジタル上に可視化するシステムを開発しています。
+        </p>
+        <p>
+            Unityを活用した日射・環境シミュレーション、WebGIS連携など、
+            都市データをわかりやすく伝える新しい可視化手法を探求しています。
+        </p>
+        </article>
+
+        <article class="card research-item">
+          <span class="small-label">PROJECT 03</span>
+          <h3>心理・行動データの統計モデリングと行動変容</h3>
+          <div class="research-image">
+            <img src="./img03.png">
+          </div>
+          <p>
+            アンケートデータに対して、多変量解析を適用し、環境配慮行動・健康行動などの決定要因を分析します。
+          </p>
+          <p>
+            これにより、都市資源の利用や食行動などに関する行動変容の仕組みを明らかにし、政策・施策設計に活かします。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Members -->
+    <section id="members">
+      <h2 class="section-title">メンバー</h2>
+      <div class="members-grid">
+        <div class="card">
+          <h3>メンバー一覧</h3>
+          <ul class="member-list">
+            <li>
+              <span>長尾 征洋</span>
+              <span class="member-role">准教授</span>
+            </li>
+            <li>
+              <span>中村 勇斗</span>
+              <span class="member-role">研究員・社会人博士2年（D2）</span>
+            </li>
+            <li>
+              <span>山崎 泰雅</span>
+              <span class="member-role">修士2年（M2）</span>
+            </li>
+            <li>
+              <span>杉浦 寿哉</span>
+              <span class="member-role">学部4年（B4）</span>
+            </li>
+            <li>
+              <span>谷村 宗祐</span>
+              <span class="member-role">学部4年（B4）</span>
+            </li>
+          </ul>
+
+          <h3 style="margin-top:1.2rem;">OB・OG</h3>
+          <ul class="member-list">
+            <li>
+              <span>芦田 結菜</span>
+              <span class="member-role">2024年度 学部4年（B4）</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>進路・OB/OG</h3>
+          <p style="font-size:0.9rem;">
+            これまでの卒業生の進路や、企業・官公庁・大学院進学などの実績を掲載しています。
+          </p>
+          <ul class="publication-list">
+            <li>2021年度　富士通</li>
+            <li>2026年度　野村総合研究所</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <h2 class="section-title">主要業績</h2>
+      <div class="card">
+        <h3>論文</h3>
+        <ul class="publication-list">
+          <li>
+            <div class="publication-year">2025年2月　Chemistry Letters 54巻(2)</div>
+            <strong>Machine learning-based pH quantification from test strip images using multiple color spaces</strong>（Open Access）<br />
+            Nakamura Y., Nagao M.<br />
+            Chemistry Letters 54巻(2), 2025年2月.
+          </li>
+          <li>
+            <div class="publication-year">2022年　土木学会論文集G（環境） 78巻(6)</div>
+            <strong>機械学習モデルを用いた画像認識による建設資材ストック推計</strong>（Open Access）<br />
+            長尾 征洋, 竹内 詢喜, 玉崎 美結, 森田 大登, 北 栄輔, 白川 博章, 谷川 寛樹<br />
+            土木学会論文集G（環境） 78巻(6), II_19 - II_25, 2022年.
+          </li>
+        </ul>
+
+        <h3>学会発表</h3>
+        <ul class="publication-list">
+          <li>
+            <div class="publication-year">2025年11月15日　第53回環境システム研究論文発表会</div>
+            <strong>航空レーザ計測データに基づく建築物の物質マテリアルストック推計手法の開発</strong><br />
+            中村 勇斗, 長尾 征洋, 白川 博章, 谷川 寛樹.
+          </li>
+          <li>
+            <div class="publication-year">2024年11月18日　The 15th Asian Conference on Chemical Sensors</div>
+            <strong>Quantification of pH Test Paper Colors into pH Values using Machine Learning</strong><br />
+            Yuto Nakamura, Masahiro Nagao.
+          </li>
+          <li>
+            <div class="publication-year">2024年11月3日　第52回環境システム研究論文発表会</div>
+            <strong>都市の未利用資源把握に向けた街路樹バイオマスの計測方法の検討</strong><br />
+            中村 勇斗, 山崎 泰雅, 長尾 征洋, 白川 博章, 谷川 寛樹.
+          </li>
+          <li>
+            <div class="publication-year">2024年11月2日　第55回 中部化学関係学協会支部連合秋季大会</div>
+            <strong>比色法の高精度化に向けた複数の色情報によるpH数値化モデル構築手法の検討</strong><br />
+            中村 勇斗, 長尾 征洋.
+          </li>
+          <li>
+            <div class="publication-year">2024年9月9日　公益社団法人 環境科学会 2024年会</div>
+            <strong>脱炭素・ストック型社会の構築に資する資源蓄積計測システムの構築</strong><br />
+            谷川 寛樹, 白川 博章, 長尾 征洋, 中村 勇斗, 長谷川 正利.
+          </li>
+          <li>
+            <div class="publication-year">2024年　PRiME 2024</div>
+            <strong>Electrochemical Extraction of Methanol and Hydrogen from Biomass Under Mild Conditions and Estimation of Their Potential Abundance By Semantic Segmentation</strong><br />
+            Yuto Morimoto, Taiga Yamazaki, Yuto Nakamura, Masahiro Nagao, Takashi Hibino.
+          </li>
+        </ul>
+        <p style="font-size:0.8rem; color:#666;">
+          ※ ここには代表的な業績のみ掲載しています。フルリストは<a href="https://profs.provost.nagoya-u.ac.jp/html/100003286_ja.html">研究者総覧</a>を参照ください。
+        </p>
+      </div>
+    </section>
+
+    <!-- Access -->
+    <section id="access">
+      <h2 class="section-title">アクセス</h2>
+      <div class="access-grid">
+        <div class="card">
+          <h3>所在地</h3>
+          <table class="access-table">
+            <tr>
+              <th>住所</th>
+              <td>
+                〒464-8602<br />
+                名古屋市千種区不老町<br />
+                全学教養棟220 および 環境総合館101
+              </td>
+            </tr>
+            <tr>
+              <th>所属</th>
+              <td>
+                名古屋大学 大学院環境学研究科 都市環境学専攻<br />
+                長尾研究室
+              </td>
+            </tr>
+            <tr>
+              <th>最寄駅</th>
+              <td>名古屋市営地下鉄 名城線「名古屋大学駅」徒歩圏</td>
+            </tr>
+          </table>
+        </div>
+        <div class="access-map-placeholder">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3814.207333045976!2d136.96616421186985!3d35.15564227264798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60037abb489f342d%3A0xeb368d1084f71cf9!2z5ZCN5Y-k5bGL5aSn5a2m5aSn5a2m6Zmi55Kw5aKD5a2m56CU56m256eR!5e0!3m2!1sen!2sjp!4v1764395521017!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="card">
+        <p style="font-size:0.9rem;">
+          配属希望の学部生・大学院受験希望者・共同研究のご相談などは、以下の連絡先までお問い合わせください。
+        </p>
+        <table class="access-table">
+          <tr>
+            <th>所在地</th>
+            <td>
+              〒464-8602<br />
+              名古屋市千種区不老町<br />
+              全学教養棟220 および 環境総合館101<br />
+              名古屋大学 大学院環境学研究科 都市環境学専攻 長尾研究室
+            </td>
+          </tr>
+          <tr>
+            <th>E-mail</th>
+            <td>
+              nagao[at]urban.env.nagoya-u.ac.jp（長尾）<br />
+              nakamura.yuto.i3[at]f.mail.nagoya-u.ac.jp（中村）<br />
+              <span style="font-size:0.8rem;">※ [at] を @ に置き換えてください。</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 長尾研究室, Nagoya University.</div>
+      <div>最終更新日：2025-11-29</div>
+    </div>
+  </footer>
+
+  <!-- ページ内リンクをスムーズスクロールにする簡単なスクリプト -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href");
+        if (!targetId || targetId === "#") return;
+        const target = document.querySelector(targetId);
+        if (!target) return;
+        e.preventDefault();
+        window.scrollTo({
+          top: target.offsetTop - 70,
+          behavior: "smooth",
+        });
+      });
+    });
+  </script>
+</body>
+</html>
